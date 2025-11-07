@@ -39,7 +39,7 @@ Certifique-se de ter o Python instalado (versão 3.6+ recomendada).
     ```bash
    cd python-rpg-game
 
-3.**Execute o arquivo principal:**
+3. **Execute o arquivo principal:**
    ```bash
    python main.py
 
