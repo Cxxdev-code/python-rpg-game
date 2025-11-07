@@ -20,8 +20,8 @@ class Game:
          return self._death
     
     @death.setter
-    def death(self,mortes):
-        self._death += mortes
+    def death(self, deaths):
+        self._death += deaths
         if self.death % 2 == 0:
                     print("Você atingiu mais 2 inimigos derrotados. Subindo de nível!")
                     self.hero.up_level()
