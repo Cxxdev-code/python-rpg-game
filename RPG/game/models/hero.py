@@ -17,9 +17,9 @@ class Hero(Character):
     
    
     def special_attack(self, target):
-        valor_habilidade = 30
+        abilityValue = 30
 
-        if self._mana >= valor_habilidade:
+        if self._mana >= abilityValue:
             damage = random.randint(self.level * 5, self.level * 8)
             target.receive_attack(damage)
             self._mana -= 30
