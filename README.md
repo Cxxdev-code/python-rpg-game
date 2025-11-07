@@ -3,8 +3,6 @@
 ## Visão Geral  
 Este é um projeto simples de jogo de batalha por turnos (Herói vs. Inimigo) implementado para demonstrar a aplicação prática de conceitos avançados de **Programação Orientada a Objetos (POO)** e modularização em Python.
 
-É um excelente projeto para portfólio, mostrando a capacidade de estruturar código limpo e organizado.
-
 ## ✨ Conceitos Técnicos Destacados  
 Este projeto foi construído com foco nos pilares da POO:
 
