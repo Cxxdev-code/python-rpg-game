@@ -36,14 +36,8 @@ Certifique-se de ter o Python instalado (versão 3.6+ recomendada).
    git clone https://github.com/Cxxdev-code/python-rpg-game.git
 2. **Navegue até a pasta do projeto:**
     ```bash
-  cd python-rpg-game
+   cd python-rpg-game
 3.**Execute o arquivo principal:**
+   ```bash
    python main.py
-Footer
-© 2025 GitHub, Inc.
-Footer navigation
-Terms
-Privacy
-Security
-Status
-C
+
