@@ -43,5 +43,3 @@ Certifique-se de ter o Python instalado (versão 3.6+ recomendada).
    ```bash
    python main.py
 
-
-
