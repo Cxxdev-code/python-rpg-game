@@ -1,0 +1,12 @@
+{
+    "Nome": "Arthur",
+    "Vida": 100,
+    "Nivel": 13,
+    "Mana": 100,
+    "Habilidade": "Golpe Inicial",
+    "Arma": {
+        "nome": "Katana",
+        "tipo": "corpo a corpo",
+        "dano": 10
+    }
+}
