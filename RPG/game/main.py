@@ -77,6 +77,11 @@ class Game:
         
         selected = random.choice(weapons)
         return Item(selected["nome"], selected["tipo"], selected["dano"])
+    def death(self, deaths):
+        self._death += deaths
+        if self.death % 2 == 0:
+                    print("Você atingiu mais 2 inimigos derrotados. Subindo de nível!")
+                    self.hero.up_level()
 
 
     def handle_victory(self):

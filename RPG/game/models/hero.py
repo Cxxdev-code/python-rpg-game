@@ -23,6 +23,19 @@ class Hero(Character):
     def skill(self):
         return self._skill
 
+    
+    
+    def show_details(self):
+        return f"{super().show_details()}\nHailidade:📚 {self.skill}\nMana: {self._mana}"
+    
+   
+    def special_attack(self, target):
+        abilityValue = 30
+
+        if self._mana >= abilityValue:
+            damage = random.randint(self.level * 5, self.level * 8)
+            target.receive_attack(damage)
+            self._mana -= 30
 
     @property
     def weapon(self):
