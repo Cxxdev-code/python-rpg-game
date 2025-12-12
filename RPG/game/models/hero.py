@@ -1,93 +1,98 @@
 from models.character import Character
 import random
 
-class Hero(Character): 
-    def __init__(self, name, health, level, skill, mana, arma = None):
+class Hero(Character):
+    def __init__(self, name, health, level, skill, mana, weapon=None):
         super().__init__(name, health, level)
-        self._skill = skill 
+        self._skill = skill
         self._mana = mana
-        self._arma = arma
+        self._weapon = weapon
+
 
     @property
-    def mana(self): 
+    def mana(self):
         return self._mana
-    
+
 
     @mana.setter
-    def mana(self, mana):
-        self._mana = mana
-    
+    def mana(self, value):
+        self._mana = value
+
 
     @property
-    def skill(self): 
+    def skill(self):
         return self._skill
-    
+
 
     @property
-    def arma(self):
-        return self._arma
-    
-
-    @arma.setter
-    def arma(self, item):
-        self._arma = item
+    def weapon(self):
+        return self._weapon
 
 
-    def attack(self, target):
-    
-     dano_base = random.randint(self.level * 2, self.level * 4)
-    
-     dano_arma = self._arma.dano if self._arma else 0
-
-     damage = dano_base + dano_arma
-
-     target.receive_attack(damage)
-
-     print(f"{self.name} atacou 🎯 {target.name} causando 💥 {dano_base} de dano")
-
-     if self._arma:
-         print(f"   ➕ A arma {self._arma.nome} adicionou {dano_arma} de dano | Total: {damage}")
-
-    
-    def show_details(self):
-     detalhes_base = super().show_details()
-
-     if self._arma:
-         arma_texto = f"Arma equipada: 🗡️  {self._arma.nome} (Dano: {self._arma.dano})"
-     else:
-         arma_texto = "Arma equipada: ❌ Nenhuma"
-
-     return (
-         f"{detalhes_base}"
-         f"\nHabilidade:📚 {self.skill}"
-         f"\nMana:🔵 {self._mana}"
-         f"\n{arma_texto}"
-     )
-    
-   
-    def special_attack(self, target):
-        valor_habilidade = 30
-
-        if self._mana >= valor_habilidade:
-            damage = random.randint(self.level * 5, self.level * 8)
-            target.receive_attack(damage)
-            self._mana -= 30
-
-            print(f"{self.name} usou a habilildade especial 📚 {self.skill} em 🎯 {target.name} e causou 💥 {damage} de dano") 
-        else:
-            print("Mana insuficiente!")
+    @weapon.setter
+    def weapon(self, item):
+        self._weapon = item
 
 
     def up_level(self):
         self._level += 1
+        
+        
+    def attack(self, target):
+        base_damage = random.randint(self.level * 2, self.level * 4)
+        weapon_damage = self._weapon.dano if self._weapon else 0
+        total_damage = base_damage + weapon_damage
 
 
-    def to_dict (self):
+        target.receive_attack(total_damage)
+
+
+        print(f"{self.name} atacou 🎯 {target.name} causando 💥 {base_damage} de dano")
+
+
+        if self._weapon:
+            print(f" ➕ A arma {self._weapon.nome} adicionou {weapon_damage} de dano | Total: {total_damage}")
+
+
+        
+    def show_details(self):
+        base_text = super().show_details()
+        if self._weapon:
+            weapon_text = f"Arma equipada: 🗡️ {self._weapon.nome} (Dano: {self._weapon.dano})"
+        else:
+            weapon_text = "Arma equipada: ❌ Nenhuma"
+
+        return (
+        f"{base_text}\n"
+        f"Habilidade:📚 {self.skill}\n"
+        f"Mana:🔵 {self._mana}\n"
+        f"{weapon_text}"
+        )
+    
+    def special_attack(self, target):
+        mana_cost = 30
+
+        if self._mana >= mana_cost:
+            damage = random.randint(self.level * 5, self.level * 8)
+            target.receive_attack(damage)
+            
+            self._mana -= mana_cost
+            print(f"{self.name} usou a habilildade especial 📚 {self.skill} em 🎯 {target.name} e causou 💥 {damage} de dano")
+            
+        else:
+            print("Mana insuficiente!")
+
+
+    
+
+
+    def to_dict(self):
         return {
-            "Nome": self.name,
-            "Vida": self.health,
-            "Nivel": self.level,
-            "Mana": self.mana,
-            "Habilidade": self.skill,
-            "Arma": self.arma.to_dict() if self.arma else "desarmado",
+        "Nome": self.name,
+        "Vida": self.health,
+        "Nivel": self.level,
+        "Mana": self.mana,
+        "Habilidade": self.skill,
+        "Arma": self.weapon.to_dict() if self.weapon else "desarmado",
         }
+        
